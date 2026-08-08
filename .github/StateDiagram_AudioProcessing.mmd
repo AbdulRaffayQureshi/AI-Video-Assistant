@@ -1,0 +1,42 @@
+---
+references:
+  - "File: /utils/audio_processor.py"
+generationTime: 2026-08-08T00:37:55.545Z
+---
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Active : start_process
+
+    state Active {
+        [*] --> Loading
+
+        Loading --> SourceType : source_detected
+        state SourceType <<choice>>
+        SourceType --> Downloading : http(s) URL
+        SourceType --> Converting : local file
+
+        Downloading --> Processing : download_complete
+        Converting --> Processing : convert_complete
+        Processing --> Chunking : audio_ready
+        Chunking --> Complete : chunks_created
+
+        Downloading --> Error : download_failed
+        Converting --> Error : convert_failed
+        Processing --> Error : processing_failed
+        Chunking --> Error : chunk_failed
+
+        note right of Loading
+            Entry: inspect source and prepare output path
+        end note
+
+        note right of Processing
+            Computing data: normalize audio to mono at 16 kHz
+        end note
+
+        note right of Chunking
+            Exit: export chunk WAV files and collect paths
+        end note
+    }
+
+    Complete --> [*]
+    Error --> Idle : retry
