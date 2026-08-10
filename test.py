@@ -3,11 +3,11 @@ load_dotenv()   # MUST be before any core/ imports
 
 from utils.audio_processor import process_input
 from core.transcriber import transcribe_all
-from core.summarizer import summarize, generate_title
+from core.summarize import summarize, generate_title
 from core.extractor import extract_action_items, extract_key_decisions, extract_questions
 
 
-source = "https://www.youtube.com/watch?v=_Q-e_nczWqM&t=223s"
+source = "https://youtu.be/XRQ6YTdU0fU?si=wbF8N66K_fzPZJVw"
 language = "english"   # "english" → Whisper, "hinglish" → Sarvam
 
 
