@@ -23,4 +23,4 @@ __pycache__/
 *.egg-info
 *.manifest
 *.spec
-*.egg
+*.eggdownloads/
