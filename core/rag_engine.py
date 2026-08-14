@@ -2,7 +2,7 @@ import os
 from langchain_mistralai import ChatMistralAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnableLamb, RunnableLambda, RunnablePassthrough, chain
+from langchain_core.runnables import RunnableLambda, RunnableLambda, RunnablePassthrough, chain
 from core.vector_store import build_vector_store, load_vector_store, get_retriever
 
 def get_llm():
